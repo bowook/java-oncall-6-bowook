@@ -14,7 +14,6 @@ public class OnCallService {
         List<Integer> days = monthDay.getDays();
         List<Day> dayList = monthDay.getDayList();
         assign(dayList, days, holidays, workers);
-        //리턴하기전에 연속 근무 확인하는 과정이 필요함
         return assignedWorkers;
     }
 

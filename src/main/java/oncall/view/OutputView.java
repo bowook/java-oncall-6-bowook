@@ -12,10 +12,16 @@ public class OutputView {
 
     public void writeResult(MonthDay monthDay, AssignedWorkers assignedWorkers) {
         Month month = monthDay.getMonth();
+        List<Integer> holidays = month.getHoliday().getDate();
         List<Integer> days = monthDay.getDays();
         List<Day> dayList = monthDay.getDayList();
         List<Worker> assignedWorker = assignedWorkers.getWorkers();
         for (int day : days) {
+            if (holidays.contains(day)) {
+                System.out.printf(FORMAT, month.getMonth(), day, dayList.get(day - 1).getName() + "(휴일)",
+                        assignedWorker.get(day - 1).getName());
+                continue;
+            }
             System.out.printf(FORMAT, month.getMonth(), day, dayList.get(day - 1).getName(),
                     assignedWorker.get(day - 1).getName());
         }
