@@ -1,2 +1,27 @@
-package oncall.view;public class OutputView {
+package oncall.view;
+
+import java.util.List;
+import oncall.domain.AssignedWorkers;
+import oncall.domain.MonthDay;
+import oncall.domain.Worker;
+import oncall.domain.constant.Day;
+import oncall.domain.constant.Month;
+
+public class OutputView {
+    private final static String FORMAT = "%d월 %d일 %s %s%n";
+
+    public void writeResult(MonthDay monthDay, AssignedWorkers assignedWorkers) {
+        Month month = monthDay.getMonth();
+        List<Integer> days = monthDay.getDays();
+        List<Day> dayList = monthDay.getDayList();
+        List<Worker> assignedWorker = assignedWorkers.getWorkers();
+        for (int day : days) {
+            System.out.printf(FORMAT, month.getMonth(), day, dayList.get(day - 1).getName(),
+                    assignedWorker.get(day - 1).getName());
+        }
+    }
+
+    public void writeErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
